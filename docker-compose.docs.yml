@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: traderobot_local_docs
+    container_name: traderobot_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./traderobot:/app/traderobot:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
